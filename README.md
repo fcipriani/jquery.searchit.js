@@ -9,13 +9,13 @@ $(jquerySelector).searchable( { options } )
 
 Example:
 --------
-Just fill your listbox, then make it searchable passing the textbox to use 
+Just pick your listbox, then make it searchable specifying the text box you'll use to type:
 
 	$("#listBox").searchable({
  		textField: $("#search")
 	});
 
-Options list and defaults:
+Option list and defaults:
 -----------------
 
 	textField: null
@@ -28,4 +28,4 @@ Options list and defaults:
 
 Demo: 
 -----
-http://jsfiddle.net/D5KJP
+http://jsfiddle.net/fabriziocip/QuYJD/
