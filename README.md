@@ -15,16 +15,16 @@ Just fill your listbox, then make it searchable passing the textbox to use
  		textField: $("#search")
 	});
 
-Options defaults:
+Options list and defaults:
 -----------------
 
-textField: null
-filtered: false,
-wholeWord: false,
-noElementText: "No element found",
-optionsCache: [],
-optionsFiltered: [],
-lastSearchedIndex: 0
+	textField: null
+	filtered: false,
+	wholeWord: false,
+	noElementText: "No element found",
+	optionsCache: [],
+	optionsFiltered: [],
+	lastSearchedIndex: 0
 
 Demo: 
 -----
