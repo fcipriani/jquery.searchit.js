@@ -25,9 +25,6 @@
         if (opts.textFieldClass) 
           opts.textField.addClass(opts.textFieldClass);
 
-        //var w = $t.width() - (opts.dropDown ? 20 : 0);
-        //opts.textField = $('#__searchit' + $counter).css('width', w + "px");
-
         if (opts.dropDown) {
           $t.css("padding", "5px")
             .css("margin", "-5px -20px -5px -5px");        
@@ -52,19 +49,19 @@
           _opts($t).optionsCache.push(this);
         });      
 
-        // Hook click
+        // Hook listbox click
         $t.click( function(event) {
           _opts($t).textField.val($(this).find(":selected").text());
           _opts($t).wrp.hide();
           event.stopPropagation();  
         })
 
-        // Hook click to close dropdown
+        // Hook html page click to close dropdown
         $("html").click( {
           _opts($t).wrp.hide();
         })
 
-        // Hook the keyboard, and we're running
+        // Hook the keyboard and we're done
         _opts($t).textField.keyup( function (event) {
           if (event.keyCode == 13) {
             $(this).val($t.find(":selected").text());
@@ -75,6 +72,7 @@
         })  
 
       })
+
 
       function _findElementsInListBox(lb, txt) {
 
