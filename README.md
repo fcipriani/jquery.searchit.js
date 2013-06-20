@@ -1,30 +1,23 @@
-jquery.searchable.js
+jquery.searchit.js
 ====================
 
-A small jquery plugin to make any listbox searchable. Items in the listbox will be hilighted as the user types the search text. Can be used in "filter" mode where the listbox shows only the items containing the search text.
+A small and simple jquery plugin to make any listbox (select) searchable. 
 
 Usage:
 ------
-$(jquerySelector).searchable( { options } )
+$(listboxselector).searchit( { [options] } )
 
 Example:
 --------
-Just pick your listbox, then make it searchable specifying the text box you'll use to type:
-
-	$("#listBox").searchable({
- 		textField: $("#search")
-	});
+	$("#listBox").searchit();
 
 Option list and defaults:
 -----------------
 
-	textField: null
-	filtered: false,
-	wholeWord: false,
-	noElementText: "No element found",
-	optionsCache: [],
-	optionsFiltered: [],
-	lastSearchedIndex: 0
+	textFieldClass: null,	// Textbox class
+	dropDownClass: null,	// Dropdown class
+	size: 5					// Elements to show when typing
+	noElementText: "No elements found"	// "No elements found" text
 
 Demo: 
 -----
