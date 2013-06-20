@@ -54,12 +54,12 @@
           _opts($t).textField.val($(this).find(":selected").text());
           _opts($t).wrp.hide();
           event.stopPropagation();  
-        })
+        });
 
         // Hook html page click to close dropdown
-        $("html").click( {
+        $("html").click( function() {
           _opts($t).wrp.hide();
-        })
+        });
 
         // Hook the keyboard and we're done
         _opts($t).textField.keyup( function (event) {
