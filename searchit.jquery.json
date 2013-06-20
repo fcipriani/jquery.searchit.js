@@ -1,0 +1,26 @@
+{
+    "name": "searchit",
+    "title": "Make any listbox searchable",
+    "description": "jQuery plugin to make any listbox searchable.",
+    "keywords": [
+        "search",
+        "listbox",
+        "searchable"
+    ],
+    "version": "0.0.1",
+    "author": {
+        "name": "Fabrizio Cipriani"
+    },
+    "licenses": [
+        {
+            "type": "GPLv2",
+            "url": "http://opensource.org/licenses/GPL-2.0"
+        }
+    ],
+    "homepage": "https://github.com/fcipriani/jquery.searchit.js",
+    "docs": "https://github.com/fcipriani/jquery.searchit.js",
+    "download": "https://raw.github.com/fcipriani/jquery.searchit.js/master/jquery.searchit.js",
+    "dependencies": {
+        "jquery": ">=1.5"
+    }
+}
