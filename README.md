@@ -21,4 +21,4 @@ Option list and defaults:
 
 Demo: 
 -----
-http://jsfiddle.net/fabriziocip/QuYJD/16
+http://jsfiddle.net/QuYJD/17/

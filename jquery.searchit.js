@@ -2,7 +2,7 @@
 
     $.fn.searchit = function( options ) {
 
-      $(this).each( function() {
+      return this.each( function() {
 
         $.fn.searchit.globals = $.fn.searchit.globals ||
         {
@@ -130,8 +130,6 @@
           lb[0].selectedIndex = 0;
         }
       }
-
-      return $t;
     }
 
     $.fn.searchit.defaults = {
