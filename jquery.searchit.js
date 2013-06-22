@@ -41,13 +41,16 @@
             opts.wrp.addClass(opts.dropDownClass);
         }      
 
-        // Save options 
-        $t.data('opts', opts);
+        opts.optionsFiltered = [];
+        opts.optionsCache = [];
 
         // Save listbox current content
         $t.find("option").each( function (index) {
-          _opts($t).optionsCache.push(this);
+          opts.optionsCache.push(this);
         });      
+
+        // Save options 
+        $t.data('opts', opts);        
 
         // Hook listbox click
         $t.click( function(event) {
@@ -93,8 +96,7 @@
             _opts(lb).optionsFiltered.push(value);
           }
 
-          // If filtering, trigger a listbox
-          // reload at the end of cycle    
+          // Trigger a listbox reload at the end of cycle    
           if (! --count) {
             _filterListBox(lb);
           }    
@@ -140,8 +142,6 @@
       size: 5,
       filtered: true,
       noElementText: "No elements found",
-      optionsCache: [],
-      optionsFiltered: []
     }    
 
   }(jQuery))
