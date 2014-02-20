@@ -8,26 +8,27 @@
         {
           counter: 0
         }
-        $.fn.searchit.globals.counter++;      
+        $.fn.searchit.globals.counter++;
         var $counter = $.fn.searchit.globals.counter;
 
         var $t = $(this);
-        var opts = $.extend( {}, $.fn.searchit.defaults, options );        
+        var opts = $.extend( {}, $.fn.searchit.defaults, options );
+        var selectedValue = $t.find("option:selected").text();
 
         // Setup default text field and class
         if (opts.textField == null) {
-          $t.before("<input type='textbox' id='__searchit" + $counter + "'><br>");
+          $t.before("<input type='textbox' id='__searchit" + $counter + "' value='"+selectedValue+"'><br>");
           opts.textField = $('#__searchit' + $counter);
-        }          
-        if (opts.textField.length > 1) 
+        }
+        if (opts.textField.length > 1)
           opts.textField = $(opts.textField[0]);
 
-        if (opts.textFieldClass) 
+        if (opts.textFieldClass)
           opts.textField.addClass(opts.textFieldClass);
 
         if (opts.dropDown) {
           $t.css("padding", "5px")
-            .css("margin", "-5px -20px -5px -5px");        
+            .css("margin", "-5px -20px -5px -5px");
 
           $t.wrap("<div id='__searchitWrapper" + $counter + "' />");
           opts.wrp = $('#__searchitWrapper' + $counter);
@@ -39,7 +40,7 @@
             .hide();
           if (opts.dropDownClass)
             opts.wrp.addClass(opts.dropDownClass);
-        }      
+        }
 
         opts.optionsFiltered = [];
         opts.optionsCache = [];
@@ -47,16 +48,16 @@
         // Save listbox current content
         $t.find("option").each( function (index) {
           opts.optionsCache.push(this);
-        });      
+        });
 
-        // Save options 
-        $t.data('opts', opts);        
+        // Save options
+        $t.data('opts', opts);
 
         // Hook listbox click
         $t.click( function(event) {
           _opts($t).textField.val($(this).find(":selected").text());
           _opts($t).wrp.hide();
-          event.stopPropagation();  
+          event.stopPropagation();
         });
 
         // Hook html page click to close dropdown
@@ -72,7 +73,7 @@
             return;
           }
           setTimeout(_findElementsInListBox($t, $(this)), 50);
-        })  
+        })
 
       })
 
@@ -82,25 +83,25 @@
         if (!lb.is(":visible")) {
           _showlb(lb);
         }
-        
+
         _opts(lb).optionsFiltered = [];
         var count = _opts(lb).optionsCache.length;
-        var dropDown = _opts(lb).dropDown;          
+        var dropDown = _opts(lb).dropDown;
         var searchText = txt.val().toLowerCase();
 
         // find match (just the old classic loop, will make the regexp later)
         $.each(_opts(lb).optionsCache, function (index, value) {
           if ($(value).text().toLowerCase().indexOf(searchText) > -1)
           {
-            // save matching items 
+            // save matching items
             _opts(lb).optionsFiltered.push(value);
           }
 
-          // Trigger a listbox reload at the end of cycle    
+          // Trigger a listbox reload at the end of cycle
           if (! --count) {
             _filterListBox(lb);
-          }    
-        });      
+          }
+        });
       }
 
       function _opts(lb) {
@@ -109,10 +110,10 @@
 
       function _showlb(lb) {
         if (_opts(lb).dropDown) {
-          var tf = _opts(lb).textField;          
+          var tf = _opts(lb).textField;
           lb.attr("size", _opts(lb).size);
           _opts(lb).wrp.show().offset({
-            top: tf.offset().top + tf.outerHeight(), 
+            top: tf.offset().top + tf.outerHeight(),
             left: tf.offset().left
           });
           _opts(lb).wrp.css("width", tf.outerWidth() + "px");
@@ -142,6 +143,6 @@
       size: 5,
       filtered: true,
       noElementText: "No elements found",
-    }    
+    }
 
   }(jQuery))
