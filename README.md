@@ -40,7 +40,7 @@ Setup options and defaults:
 	noElementText: "No elements found",
 
 	// Show the first select option in the text field
-	showFirstOption: false		
+	loadFirstOption: false		
 
 Demo: 
 -----

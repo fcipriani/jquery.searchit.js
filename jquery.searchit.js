@@ -23,12 +23,13 @@
 				
 			// Build a text field if not available
 			if (opts.textFields == null) {
-				$t.before("<input type='textbox' id='__searchit" + $counter + "'" +
-					// gwincr11 suggestion
-					(opts.firstOptionIsDefault ? " value='" + selectedValue + "'" : "") +
-					"><br>");
+				$t.before("<input type='textbox' id='__searchit" + $counter + "'><br>");
 				opts.textFields = $('#__searchit' + $counter);
 			}          
+			if (opts.loadFirstOption) {
+				// gwincr11 suggestion
+				opts.textFields.val(selectedValue);
+			}
 
 			// Use provided css class
 			if (opts.textFieldClass)
@@ -176,8 +177,8 @@
 		// Text to show when no element matches the typed text
 		noElementText: "No elements found",
 
-		// Show the first select option in the text field
-		showFirstOption: false		
+		// Load the first select option in the text field
+		loadFirstOption: false		
 	}    
 
 }(jQuery))
