@@ -13,22 +13,25 @@
 			var $t = $(this);
 			var opts = $.extend( {}, $.fn.searchit.defaults, options );
 			var selectedValue = $t.find("option:selected").text();
+			
+			// Changed property name, backward compatibility stuff
+			if (opts.textField && !opts.textFields) opts.textFields = opts.textField;
 
 			// Use provided text fields, one for each select object
-			if (opts.textField && opts.textField.length > 1)
-				opts.textField = $(opts.textField[$counter]);
+			if (opts.textFields && opts.textFields.length > 1)
+				opts.textFields = $(opts.textFields[$counter]);
 			// Build a text field if not available
-			if (opts.textField == null) {
+			if (opts.textFields == null) {
 				$t.before("<input type='textbox' id='__searchit" + $counter + "'" +
 					// gwincr11 suggestion
 					(opts.firstOptionIsDefault ? " value='" + selectedValue + "'" : "") +
 					"><br>");
-				opts.textField = $('#__searchit' + $counter);
+				opts.textFields = $('#__searchit' + $counter);
 			}          
 
 			// Use provided css class
 			if (opts.textFieldClass)
-				opts.textField.addClass(opts.textFieldClass);
+				opts.textFields.addClass(opts.textFieldClass);
 			// Make select nicer
 			if (opts.dropDown) {
 				$t.css("padding", "5px")
@@ -143,10 +146,13 @@
 	}
 
 	$.fn.searchit.defaults = {
+		// backward compatibility
+		textField: null
+		
 		// Provide custom text fields where select will be attached, must be a jquery object.
 		// If multiple text fields are provided, select objects will be attached to them
 		// in the order they are found
-		textField: null,										
+		textFields: null,										
 
 		// Text fields css class
 		textFieldClass: null,								
