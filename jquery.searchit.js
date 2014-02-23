@@ -147,7 +147,7 @@
 
 	$.fn.searchit.defaults = {
 		// backward compatibility
-		textField: null
+		textField: null,
 		
 		// Provide custom text fields where select will be attached, must be a jquery object.
 		// If multiple text fields are provided, select objects will be attached to them
