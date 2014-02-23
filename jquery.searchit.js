@@ -20,6 +20,7 @@
 			// Use provided text fields, one for each select object
 			if (opts.textFields && opts.textFields.length > 1)
 				opts.textFields = $(opts.textFields[$counter]);
+				
 			// Build a text field if not available
 			if (opts.textFields == null) {
 				$t.before("<input type='textbox' id='__searchit" + $counter + "'" +
@@ -62,7 +63,7 @@
 
 			// Hook listbox click
 			$t.click( function(event) {
-				_opts($t).textField.val($(this).find(":selected").text());
+				_opts($t).textFields.val($(this).find(":selected").text());
 				_opts($t).wrp.hide();
 				event.stopPropagation();  
 			});
@@ -73,14 +74,18 @@
 			});
 
 			// Hook the keyboard and we're done
-			_opts($t).textField.keyup( function (event) {
-				if (event.keyCode == 13) {
+			_opts($t).textFields.keydown( function (event) {
+				if (event.keyCode == 13 || event.keyCode == 9) {
 					$(this).val($t.find(":selected").text());
 					_opts($t).wrp.hide();
 					return;
 				}
-				setTimeout(_findElementsInListBox($t, $(this)), 50);
-			})
+			});
+			_opts($t).textFields.keyup( function (event) {
+				if (event.keyCode != 13 && event.keyCode != 9) {
+					setTimeout(_findElementsInListBox($t, $(this)), 50);
+				}
+			});
 
 			// Incremente counter so we have unique field ids
 			$.fn.searchit.globals.counter++;      
@@ -120,7 +125,7 @@
 
 		function _showlb(lb) {
 			if (_opts(lb).dropDown) {
-				var tf = _opts(lb).textField;          
+				var tf = _opts(lb).textFields;          
 				lb.attr("size", _opts(lb).size);
 				_opts(lb).wrp.show().offset({
 					top: tf.offset().top + tf.outerHeight(), 
