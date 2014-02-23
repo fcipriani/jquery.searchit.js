@@ -8,26 +8,31 @@
         {
           counter: 0
         }
-        $.fn.searchit.globals.counter++;      
         var $counter = $.fn.searchit.globals.counter;
 
         var $t = $(this);
-        var opts = $.extend( {}, $.fn.searchit.defaults, options );        
+        var opts = $.extend( {}, $.fn.searchit.defaults, options );
+				var selectedValue = $t.find("option:selected").text();
 
-        // Setup default text field and class
+				// Use provided text fields, one for each select object
+        if (opts.textField && opts.textField.length > 1)
+          opts.textField = $(opts.textField[$counter]);
+				// Build a text field if not available
         if (opts.textField == null) {
-          $t.before("<input type='textbox' id='__searchit" + $counter + "'><br>");
+          $t.before("<input type='textbox' id='__searchit" + $counter + "'" +
+						// gwincr11 suggestion
+						(opts.firstOptionIsDefault ? " value='" + selectedValue + "'" : "") +
+						"><br>");
           opts.textField = $('#__searchit' + $counter);
         }          
-        if (opts.textField.length > 1) 
-          opts.textField = $(opts.textField[0]);
 
-        if (opts.textFieldClass) 
+				// Use provided css class
+        if (opts.textFieldClass)
           opts.textField.addClass(opts.textFieldClass);
-
+				// Make select nicer
         if (opts.dropDown) {
           $t.css("padding", "5px")
-            .css("margin", "-5px -20px -5px -5px");        
+            .css("margin", "-5px -20px -5px -5px");
 
           $t.wrap("<div id='__searchitWrapper" + $counter + "' />");
           opts.wrp = $('#__searchitWrapper' + $counter);
@@ -39,7 +44,7 @@
             .hide();
           if (opts.dropDownClass)
             opts.wrp.addClass(opts.dropDownClass);
-        }      
+        } 
 
         opts.optionsFiltered = [];
         opts.optionsCache = [];
@@ -50,7 +55,7 @@
         });      
 
         // Save options 
-        $t.data('opts', opts);        
+        $t.data('opts', opts);
 
         // Hook listbox click
         $t.click( function(event) {
@@ -72,7 +77,10 @@
             return;
           }
           setTimeout(_findElementsInListBox($t, $(this)), 50);
-        })  
+        })
+
+				// Incremente counter so we have unique field ids
+        $.fn.searchit.globals.counter++;      
 
       })
 
@@ -85,7 +93,7 @@
         
         _opts(lb).optionsFiltered = [];
         var count = _opts(lb).optionsCache.length;
-        var dropDown = _opts(lb).dropDown;          
+        var dropDown = _opts(lb).dropDown;
         var searchText = txt.val().toLowerCase();
 
         // find match (just the old classic loop, will make the regexp later)
@@ -99,8 +107,8 @@
           // Trigger a listbox reload at the end of cycle    
           if (! --count) {
             _filterListBox(lb);
-          }    
-        });      
+          }
+        });
       }
 
       function _opts(lb) {
@@ -135,13 +143,30 @@
     }
 
     $.fn.searchit.defaults = {
-      textField: null,
-      textFieldClass: null,
-      dropDown: true,
+			// Provide custom text fields where select will be attached, must be a jquery object.
+			// If multiple text fields are provided, select objects will be attached to them
+			// in the order they are found
+      textField: null,										
+
+			// Text fields css class
+      textFieldClass: null,								
+
+			// Show the select object as a custom dropdown under the text fields. If it is false,
+			// the select object will be left where it is, and typing in the text field will
+			// work as a quick select
+      dropDown: true,											
+
+			// The dropdown css class
       dropDownClass: null,
+
+			// Number of the visible options in the select object
       size: 5,
-      filtered: true,
+
+			// Text to show when no element matches the typed text
       noElementText: "No elements found",
+
+			// Show the first select option in the text field
+			showFirstOption: false		
     }    
 
   }(jQuery))
