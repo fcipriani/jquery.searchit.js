@@ -39,8 +39,8 @@ Setup options and defaults:
 	// Text to show when no element matches the typed text
 	noElementText: "No elements found",
 
-	// Show the first select option in the text field
-	loadFirstOption: false		
+	// Show the currently selected option in the text field
+	loadSelectedOption: false		
 
 Demo: 
 -----

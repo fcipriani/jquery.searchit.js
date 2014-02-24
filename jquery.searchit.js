@@ -26,7 +26,7 @@
 				$t.before("<input type='textbox' id='__searchit" + $counter + "'><br>");
 				opts.textFields = $('#__searchit' + $counter);
 			}          
-			if (opts.loadFirstOption) {
+			if (opts.loadSelectedOption) {
 				// gwincr11 suggestion
 				opts.textFields.val(selectedValue);
 			}
@@ -177,8 +177,8 @@
 		// Text to show when no element matches the typed text
 		noElementText: "No elements found",
 
-		// Load the first select option in the text field
-		loadFirstOption: false		
+		// Load the currently selected option in the text field
+		loadSelectedOption: false		
 	}    
 
 }(jQuery))
