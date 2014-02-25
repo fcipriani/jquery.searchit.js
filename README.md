@@ -25,21 +25,20 @@ Setup options and defaults:
 	// Text fields css class
 	textFieldClass: null,								
 
-	// Show the select object as a custom dropdown under the text fields. If it is false,
-	// the select object will be left where it is, and typing in the text field will
-	// work as a quick select
+	// Show the select object as a custom dropdown right under the text fields. If it is false,
+	// the dropdowns won't be touched, typing in the text field will work as quick selection
 	dropDown: true,											
 
 	// The dropdown css class
 	dropDownClass: null,
 
-	// Number of the visible options in the select object
+	// Number visible options in the dropdowns
 	size: 5,
 
 	// Text to show when no element matches the typed text
 	noElementText: "No elements found",
 
-	// Show the currently selected option in the text field
+	// Load the currently selected option in the text field at startup
 	loadSelectedOption: false		
 
 Demo: 
