@@ -17,17 +17,14 @@ Examples:
 Setup options and defaults:
 -----------------
 
-	// Provide custom text fields where the dropdowns will be attached. Must be a jquery object.
-	// If multiple text fields are provided, dropdowns will be attached to them
-	// in the order they are found
+	// The text fields (input type="text") where to type the search text. Must be a jquery object.
+	// If not provided (default), a text field will be created above each dropdown on the fly. 
 	textFields: null,										
 
 	// Text fields css class
 	textFieldClass: null,								
 
 	// Hides the dropdowns and show them right under the text fields when something is typed.
-	// If false, existing dropdowns won't be touched, and typing in the text field will work 
-	// as a quick selection
 	dropDown: true,											
 
 	// The dropdown css class
