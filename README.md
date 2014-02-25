@@ -12,7 +12,7 @@ Examples:
 	// Simple
 	$("#listBox").searchit();
 	// Passing some setup options
-	$("#listBox").searchit({textField:$(".myTextFields"), noElementText:"No matches", size:10});
+	$("#listBox").searchit({textFields:$(".myTextFields"), noElementText:"No matches", size:10});
 
 Setup options and defaults:
 -----------------
